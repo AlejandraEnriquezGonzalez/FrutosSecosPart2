@@ -1,4 +1,4 @@
-package cl.isisur.basedatosfirebase2022;
+package cl.isisur.frutossecos;
 
 import org.junit.Test;
 

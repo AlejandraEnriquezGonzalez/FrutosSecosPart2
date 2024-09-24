@@ -1,8 +1,9 @@
-package cl.isisur.basedatosfirebase2022;
+package cl.isisur.frutossecos;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -21,64 +22,46 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import cl.isisur.basedatosfirebase2022.Clases.Libro;
+import cl.isisur.basedatosfirebase2022.R;
+import cl.isisur.frutossecos.Clases.Productos;
 
 
 public class MainActivity extends AppCompatActivity {
-        private List<Libro> ListLibro = new ArrayList<Libro>();
+        private List<Productos> ListProductos = new ArrayList<Productos>();
         private List<String> ListLibroNombre = new ArrayList();
-        ArrayAdapter<Libro> arrayAdapterLibro;
+        ArrayAdapter<Productos> arrayAdapterProductos;
         ArrayAdapter<String> arrayAdapterString;
 
-
-    EditText eTNombre,eTEditorial;
-        Button bTBoton, btEliminar;
-        ListView lvListadoLibros;
+        
+        ListView lvListadoProductos;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        eTNombre=findViewById(R.id.eTNombre);
-        eTEditorial=findViewById(R.id.eTEditorial);
-        bTBoton=findViewById(R.id.bTAgregar);
-        btEliminar=findViewById(R.id.btEliminar);
-        lvListadoLibros=findViewById(R.id.lvListadoLibros);
+        lvListadoProductos=findViewById(R.id.lvListado);
         inicializarFireBase();
         listarDatos();
-
-        bTBoton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Libro libro = new Libro();
-                //libro.setIdAutor("11111");
-                libro.setIdAutor(UUID.randomUUID().toString());
-                libro.setNombre(eTNombre.getText().toString());
-                libro.setEstado(eTEditorial.getText().toString());
-                databaseReference.child("Libro").child(libro.getIdAutor()).setValue(libro);
-
-
-            }
-        });
 
 
     }
     private void listarDatos() {
-        databaseReference.child("Libro").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("Producto").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-             ListLibro.clear();
+             ListProductos.clear();
              for (DataSnapshot objs : snapshot.getChildren()){
-                 Libro li =objs.getValue(Libro.class);
-                 ListLibro.add(li);
-                 ListLibroNombre.add(""+li.getNombre()+" "+li.getEstado());
+                 Productos pro =objs.getValue(Productos.class);
+                 ListProductos.add(pro);
+                 ListLibroNombre.add(""+pro.getNombre()+" "+pro.getEstado());
                  arrayAdapterString =new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_expandable_list_item_1,ListLibroNombre);
-                 lvListadoLibros.setAdapter(arrayAdapterString);
+                 lvListadoProductos.setAdapter(arrayAdapterString);
              }
             }
 

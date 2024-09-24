@@ -1,30 +1,30 @@
-package cl.isisur.basedatosfirebase2022.Clases;
+package cl.isisur.frutossecos.Clases;
 
-public class Libro {
-    private String idAutor;
+public class Productos {
+    private String idProducto;
     private String nombre;
     private String estado;
 
-    public Libro()
+    public Productos()
     {
-        this.idAutor="";
+        this.idProducto="";
         this.nombre="";
         this.estado="";
     }
 
-    public Libro( String idAutor, String nombre, String estado )
+    public Productos( String idProducto, String nombre, String estado )
     {
-        this.idAutor=idAutor;
+        this.idProducto=idProducto;
         this.nombre=nombre;
         this.estado=estado;
     }
 
     public String getIdAutor() {
-        return idAutor;
+        return idProducto;
     }
 
-    public void setIdAutor(String idAutor) {
-        this.idAutor = idAutor;
+    public void setIdAutor(String idProducto) {
+        this.idProducto = idProducto;
     }
 
     public String getNombre() {
@@ -45,11 +45,10 @@ public class Libro {
 
     @Override
     public String toString() {
-        return "Autor{" +
-                "idAutor='" + idAutor + '\'' +
+        return "Producto{" +
+                "idAutor='" + idProducto + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", estado='" + estado + '\'' +
                 '}';
     }
-
 }

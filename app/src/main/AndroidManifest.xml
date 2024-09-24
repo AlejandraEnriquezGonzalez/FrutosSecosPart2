@@ -4,12 +4,15 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="frutossecos"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BasedatosFireBase2022">
         <activity
-            android:name=".MainActivity"
+            android:name="cl.isisur.frutossecos.MainActivity2"
+            android:exported="false" />
+        <activity
+            android:name="cl.isisur.frutossecos.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
